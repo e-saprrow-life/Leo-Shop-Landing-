@@ -1,0 +1,1100 @@
+// Настройки
+@import 'nullstyle.scss';
+@import 'settings.scss';
+@import 'easydropdown.scss';
+@import 'slick_slider.scss';
+@import 'burger.scss';
+// Еще немного обнулений
+input[type="search"]::-ms-clear { /* нестандартный псевдоэлемент IE */ 
+  display: none;
+}
+input[type="search"]::-webkit-search-cancel-button { /* нестандартный псевдоэлемент WebKit/Blink, но Esc по-прежнему будет удалять раннее введённый текст */ 
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+// ========== Основные блоки ===============
+body {
+	font-family: $mff;
+	font-size: $mfz;
+}
+body.lock {
+	height: 100vh;
+	overflow: hidden;
+}
+
+.wrapper{ // Оболочка докумена
+	max-width: #{$maxWidth + px};
+	margin: 0 auto;
+	line-height: 1.5;
+}
+
+.container{	// Контейнер
+	max-width: calc( #{$mwContainer} + #{$pContainer} * 2);
+	height: 100%;
+	padding-left: $pContainer;
+	padding-right: $pContainer;
+	margin: 0 auto;
+}
+
+.content {
+	padding: 40px 0;
+}
+
+.btn {
+	cursor: pointer;
+}
+
+
+
+
+
+//======================================
+//======================================
+//======================================
+//======================================
+//======================================
+//======================================
+
+//=========== Simple-menu =============
+.simple-menu {
+	display: flex;
+	align-items: center;
+	&__item {
+		border-right: 1px solid $fCol2;
+		&:last-child {
+			border-right: none;
+			a {
+				padding: 0 0 0 15px;}
+		}
+		&:first-child {
+			a {padding: 0 15px 0 0;}
+		}
+		a, a:visited {
+			display: block;
+			color: $fCol1;
+			padding: 0 15px;
+			transition: color $transNavLink;
+		}
+		a:hover {
+			color: $fCol2;
+			transition: color $transNavLink;
+		}
+		a:active {
+			color: $fCol1;
+		}	
+	}
+}
+
+
+
+
+
+
+//======================================
+//======================================
+//======================================
+//======================================
+//======================================
+
+// ================= userNav ===========
+
+.userNav {
+	background: $bg1;
+	font-size: 13px;
+	&__inner {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: cneter;
+		padding: 14px 0;
+	}
+	&__options {
+		display: flex;
+		align-items: center;
+		& div:nth-child(1) {
+			margin-right: 20px;
+		}
+	}
+}
+.btn-user-nav {
+	display: none;
+}
+
+.option {
+	display: flex;
+	align-items: center;
+	color: $fCol1;
+	&__title {
+		margin-right: 4px;
+		color:$fCol2;
+	}
+}
+
+
+
+
+
+
+
+
+
+//======================================
+//======================================
+//======================================
+//======================================
+//======================================
+//======================================
+
+//========== MAIN MAVIGATOR ============
+.nav {
+	background: $bg2;
+	box-shadow: 0px 4px 5px -4px $bg6;
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		padding: 26px 0;
+	}
+	&__logo {
+		padding-right: 15px;
+		h1 {
+			font-size: 36px;
+			color: $fCol3;
+			font-weight: bold;
+			text-transform: uppercase;
+		}	
+	}		
+}
+
+.menu-list {
+	display: flex;
+	align-items: center;
+	color: $fCol3;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 0 15px;
+	&__item {
+		margin-right: 20px;
+		font-weight: bold;
+		position: relative;
+		&::after {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 4px;
+			background: $fCol3;
+			position: absolute;
+			transform: scale(0, 1);
+			transition: transform $transNavLink;
+		}
+		&:hover.menu-list__item::after {
+			transform: scale(1, 1);
+		}
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+	&__link {
+		color: $fCol3;
+		&:visited {
+			color: $fCol3;
+		}
+	}
+}
+
+.search {
+	max-width: 174px;
+	position: relative;
+	height: 29px;
+	&__input-field {
+		padding: 0 25px 0 10px;
+		border: 1px solid $searchBorder;
+		height: 100%;
+		width: 100%;
+		min-width: 100px;
+		position: relative;
+	}
+	&__btn {
+		height: 9px;
+		background: none;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		transition: transform $transNavLink;
+		&:hover {
+			transform: scale(1.5);
+			transition: transform $transNavLink;
+		}
+	}
+}
+
+.shopping-tools {
+	display: flex;
+	align-items: center;
+
+	&__search-wrapper {
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+	&__cart-panel-wrapper {
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+}
+
+.cart-panel {
+	display: flex;
+	align-items: center;
+	margin-left: 14px;
+	&__tags {
+		min-height: 35px;
+		min-width: 35px;
+		max-height: 35px;
+		max-width: 35px;		
+		border-radius: 50%;
+		background: $bg3;
+		@extend %center;
+		cursor: pointer;
+		color: $fCol1;
+		font-size: 18px;
+		transition: transform $transNavLink;
+		i {
+			position: relative;
+			left: 1px;
+			top: 1px;
+		}
+		&:hover {
+			transform: scale(1.05);
+			transition: transform $transNavLink;
+		}
+	}
+	&__shopping-cart {
+		max-height: 35px;
+		min-height: 35px;
+		max-width: 35px;
+		min-width: 35px;
+		border-radius: 50%;
+		background: $bg3;
+		@extend %center;
+		margin-left: 4px;
+		cursor: pointer;
+		color: $fCol1;
+		font-size: 18px;
+		transition: transform $transNavLink;
+		i {
+			position: relative;
+			left: -1px;
+		}
+		&:hover {
+			transform: scale(1.05);
+			transition: transform $transNavLink;
+		}
+	}
+	&__cart {
+		font-size: 14px;
+		cursor: pointer;
+		margin-left: 13px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//=====================================
+//=====================================
+//=====================================
+//=====================================
+//=====================================
+//=====================================
+
+//============== HEADER ===============
+.header {}
+
+.single-slide {
+	&__slide {
+		overflow: hidden;
+		position: relative;
+	}
+	&__slide-bg {
+		@include adaptive-img-height(500, 150);
+		object-fit: contain;
+	}
+	&__wrapper {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 100%;
+	}
+	&__item {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		//padding: 0 100px;
+	}
+	&__title {
+		@include adaptive-font(30, 14);
+		color: #ffffff;
+		text-transform: uppercase;
+		span {
+			display: inline-block;
+			background: $bg6;
+			padding: 8px 15px;
+		}
+	}
+	&__title_light {
+		font-weight: 300;
+		margin-bottom: 3px;
+	}
+	&__title_bold {
+		font-weight: 700;
+	}
+}
+
+
+// ======================================
+// ======================================
+// ======================================
+// ======================================
+// ======================================
+
+// ============== Main ==================	
+.main {
+	&__wrapper {
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+		grid-gap: 28px;
+		grid-template-areas: "products sidebar";
+	}
+}
+
+.products {
+	grid-area: products;
+	margin-bottom: 50px;
+	&__title {
+		font-size: 24px;
+		text-transform: uppercase;
+		color: $fCol5;
+		margin-bottom: 20px;
+	}
+	&__grid {
+		display: grid;
+		//grid-template-columns: repeat(auto-fit, );
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		grid-gap: 30px;
+	}
+}
+
+//=== Внешняя оболочка конкретного товара =====
+.product {
+	padding: 3px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	//========== Стикеры: ============
+	// New product
+	&__tape-new {
+		position: absolute;
+		top: 10px;
+		right: -50px;
+		background:  $bg1;
+		border-bottom: 1px solid $bg1dark;
+		width: 160px;
+		padding: 12.73px 0;
+		color: $fCol1;
+		font-size: 15px;
+		text-align: center;
+		text-transform: uppercase;
+		transform: rotate(45deg);
+	}
+	//========= Sale =========================
+	&__tape-sale {
+		position: absolute;
+		top: 10px;
+		left: -50px;
+		background:  $bg3;
+		border-bottom: 1px solid $bg3dark;
+		width: 160px;
+		padding: 12.73px 0;
+		color: $fCol1;
+		font-size: 15px;
+		text-align: center;
+		text-transform: uppercase;
+		transform: rotate(-45deg);
+	}
+	//======== внутрення оболочка товара ==============
+	&__inner {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		box-shadow: $bs;
+		padding: 8px;
+		position: relative;
+		background: #ffffff;
+		overflow: hidden;
+	}
+	&__img-link {
+		flex: 0 0 auto;
+		width: 100%;
+		height:  228px;
+		max-height: 228px;
+		margin-bottom: 7px;
+		overflow: hidden;
+		display: block;
+	}
+	&__img {
+			height: 100%;
+			width: 100%;
+			object-fit: contain;
+	}
+	&__panel {
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: space-between;
+		ul {
+			line-height: 1.5;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding-right: 10px;
+		}
+	}
+	&__title {
+		font-size: 14px;
+		text-transform: uppercase;
+		a,a:visited {
+			color: $fCol5;
+			transition: color $mTrans;
+		}
+		a:hover {
+			color: $bg4;
+			transition: color $mTrans;
+		}
+	}
+	&__price {
+		color: $bg3;
+		font-size: 18px;
+		span {
+			text-decoration: line-through;
+			color: $fCol6;
+			margin-right: 5px;
+			font-size: 14px;
+		}
+	}
+	&__btn-wrapper{
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+	&__add-to-cart {
+		$hw: 45px;
+		min-height: $hw;
+		max-height: $hw;
+		min-width: $hw;
+		max-width: $hw;
+		flex: 0 0 auto;
+		border-radius: 50%;
+		background: $bg3;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #ffffff;
+		font-size: 18px;
+		transition: background $mTrans;
+		cursor: pointer;
+		&:hover {
+			background: $bg4;
+			transition: background $mTrans;
+		}
+		&:active {
+			background: $fCol4;
+		}
+	}
+}
+
+//============== Блок подписки =====
+
+.subscribe-block {
+	display: none;
+}
+
+
+//===== Блок инфы про доставку =====
+.shipping {
+	background: $bg1;
+	padding: 21px 0;
+	&__grid {		
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+		grid-gap: 21px;
+	}
+	&__info {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		max-width: 500px;
+	}
+	&__ico {
+		min-height: 65px; 
+		max-height: 65px;
+		min-width: 65px;
+		max-width: 65px;
+		border-radius: 50%;
+		background: $bg2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 28px;
+		margin-right: 20px;
+		i {
+			color: $bg1;
+		}
+	}
+	&__text {
+		text-transform: uppercase;
+		font-size: 21px;
+		color: $fCol1;
+		a {
+			color: $fCol1;
+			transition: color $mTrans;
+			&:hover {
+				color: $fCol2;
+				transition: color $mTrans;
+			}
+		}
+	}
+}
+
+
+
+//=======================================
+//=======================================
+//=======================================
+//=======================================
+//=======================================
+
+//================ Sidebar ==============
+
+.sidebar {
+	flex: 0 0 auto;
+	max-width: $mwAside;
+	padding-top: 40px;
+	&__block {
+		border-top: 4px solid $bg1;
+		box-shadow: $bs;
+		max-height: 400px;
+		overflow: hidden;
+	}
+	&__block-tite {
+		text-transform: uppercase;
+		font-size: 24px;
+		text-align: center;
+		padding: 20px 0;
+		line-height: 31px;
+		color: $fCol5;
+	}
+	&__block-inner {
+	}	
+}
+
+// Слайдер в сейд баре
+.featured-block {
+	margin-bottom: 30px;	
+}
+.featured {
+	&__slider {
+	}
+	&__slide {
+		position: relative;
+		overflow: hidden;
+	}
+	&__slide-img {
+	}
+	&__slide-btn-wrap {
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		width: 100%;
+		bottom: -100%;
+		overflow: hidden;
+		transition: bottom 0.3s ease 0s;
+	}
+	&__slide-btn {
+		display: inline-block;
+		background: $bg1;
+		color: $fCol1;
+		font-size: 14px;
+		padding: 16px 34px 16px 24px;
+		&:visited {
+			color: $fCol1;
+		}
+		&:hover {
+			background: $bg4;
+			transition: background $mTrans;
+		}
+	}
+	&__slide:hover .featured__slide-btn-wrap {
+		bottom: 16px;
+		transition: bottom $mTrans;
+	}
+}
+
+
+// Подписка на новости
+.sidebar {
+	&__block-inner {
+	}
+}
+.subscribe {
+	grid-area: sidebar;
+	padding: 0 24px 30px 24px ;
+	color: $fCol1;
+	p {
+		text-align: center;
+		line-height: 1.5;
+		margin-bottom: 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: $fCol5;
+		&:after {
+			content: '';
+			display: flex;
+			justify-content: center;
+			width: 50%;
+			height: 1px;
+			background: $searchBorder;
+			margin-top: 11px;
+		}
+	}
+	&__form {
+		margin-bottom: 30px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		input	{
+			padding: 0 25px 0 10px;
+			border: 1px solid $searchBorder;
+			height: 29px;
+			width: 100%;
+			max-width: 200px;
+			margin-bottom: 20px;
+		}
+	}
+	&__btn-wrap {
+		display: flex;
+		justify-content: center;
+	}
+	&__btn {
+		background: $bg3;
+		padding: 13px 24px;
+		color: $fCol1;
+		transition: background $mTrans;
+		&:hover {
+			background: $bg4;
+			transition: background $mTrans;
+		}
+		&:active {
+			background: $fCol4;
+		}
+	}
+}
+
+
+
+
+
+
+//=====================================
+//=====================================
+//=====================================
+//=====================================
+//=====================================
+//=====================================
+
+//============ FOOTER =================
+.footer {
+	background: $bg4;
+	&__main-block {
+		padding: 45px 0;
+		color: $fCol1;
+	}
+	&__main-block-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		grid-gap: 20px;
+	}
+	&__grid-elem {
+		width: 100%;
+		justify-self: center;
+	}
+	&__block-title {
+		text-transform: uppercase;
+		font-size: 22px;
+		color: $fCol1;
+		margin-bottom: 30px;
+	}
+	&__info-item {
+		span {
+			content: '>';
+			margin-right: 7px;
+
+		}
+	}
+	&__info-link {
+		color: $fCol1;
+		&:visited {
+			color: $fCol1;
+		}
+		&:hover {
+			color: $fCol2;
+			transition: color $mTrans;
+		}
+	}
+	&__contacts {
+		a {
+			color: $fCol1;
+			transition: color $mTrans;
+			&:visided {
+				color: $fCol1;
+				transition: color $mTrans;
+			}
+			&:hover {
+				color: $fCol7;
+				transition: color $mTrans;
+			}
+		}
+	}
+	&__social {
+		display: flex;
+
+	}
+	&__social-link {
+		min-height: 34px;
+		min-width: 34px;
+		max-height: 34px;
+		max-width: 34px;
+		border-radius: 50%;
+		background: $bg2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		font-size: 22px;
+		color: $bg4;
+		margin: 0 10px 0 0;
+		transition: transform $mTrans, color $mTrans;
+		&:last-child {
+			margin: 0;
+		}
+		a {
+			display: block;
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		&:hover {
+			color: $fCol7;
+			transform: scale(1.1);
+			transition: transform $mTrans, color $mTrans;
+		}
+	}
+	&__bottom-block {
+		background: $bg5;
+		color: $fCol7;
+	}
+	&__bottom-block-item {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	&__copyright {
+		margin: 20px 0;
+	}
+	&__menu {
+		margin: 20px 0;
+		li {
+			font-size: 13px;
+		}
+		a, a:visited {
+			color: $fCol7;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+//====================================
+//========= МЕДИЯ ЗАПРОСЫ ============
+
+@media (max-width: 1023px) {
+	.main {
+		&__wrapper {
+			display: grid;
+			grid-template-columns: 3fr;
+			grid-gap: 28px;
+			grid-template-areas: "products";
+		}
+	}
+
+	.sidebar {
+		display: none;
+	}
+	// блок подписки
+	.subscribe-block {
+		display: block;
+		box-shadow: none;
+	}
+}
+
+
+@media screen and (max-width: 920px) {
+
+	// Бургег
+	.burger {
+		display: block;
+		position: relative; 
+		z-index: 120;
+	}
+
+	// выпадающее меню сайта
+	.menu-list {
+		position: fixed;
+		right: -100%;
+		top: 0;
+		height: 100vh;
+		width: 100%;
+		z-index: 80;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
+		margin: 0;
+		background: $bg1rgba;
+		transition: right $mTrans;
+		z-index: 115;
+		&__item {
+			display: block;
+			width: 150px;
+			margin: 0;
+			margin-bottom: 10px;
+			padding: 5px 8px;
+			&::after {
+				display: none;
+			}
+		}
+		&__link {
+			display: block;
+			width: 100%;
+			color: $fCol1;
+			&:visited {
+				color: $fCol1;
+			}
+		}
+	}
+
+	// маню активное
+	.menu-list_active {
+		right: 0;
+		transition: right $mTrans;
+	}
+}
+
+
+
+
+
+
+
+// Экраны с максимальной шириной 768 пикселей
+@media screen and (max-width: 767px) {
+	.burger {
+		position: fixed;
+		top: 15px;
+		right: 15px;
+	}
+	.nav {
+		&__inner {
+			padding: 50px 0;
+		}
+	}
+
+// Меню пользователя:
+	// Кнопка расскрытия меню
+	.btn-user-nav {
+		width: 40px;
+		height: 40px;	
+		background: $bg1dark;
+		position: fixed;
+		top: 15px;
+		left: 15px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: $fCol1;
+		font-size: 25px;
+		z-index: 115;
+	}
+	// меню пользователя в мобильной версии
+	.userNav {
+		position: fixed;
+		left: -100vw;
+		width: 100vw;
+		height: 100vh;
+		z-index: 110;
+		overflow-y: auto;
+		background: $bg1rgba;
+		transition: left $mTrans;
+		&__inner {
+			flex-direction: column;
+			padding: 75px 0;
+			.simple-menu {
+				order: 1;
+				flex-direction: column;
+				margin-bottom: 30px;
+				li {
+					border: none;
+					margin-bottom: 30px;
+					font-size: 22px;
+					width: 80%;
+					a {
+						display: block;
+						width: 100%;
+						text-align: center;
+						padding: 10px 15px;
+						background: $bg1dark;
+					}
+				}
+			}
+		}
+		&__options {
+			order: 2;
+			flex-direction: column;
+			font-size: 22px;
+			.option {
+				padding: 0;
+				margin-bottom: 20px;
+			}
+		}
+	}
+
+
+
+	.userNav_active { // Активное меню пользователя
+		left: 0;
+		transition: left $mTrans;
+	}
+
+	.nav {
+		&__inner {
+			flex-direction: column;
+		}
+		&__logo {
+			margin-bottom: 20px;
+		}
+	}
+
+
+	.shopping-tools {
+		width: 100%;
+		flex-direction: column;
+		&__search-wrapper {
+			margin-bottom: 20px;
+
+		}
+		&__cart-panel-wrapper {}
+	}
+
+	.sidebar { // Отключение сейдбара на экранах меньше 768px
+		display: none;
+	}
+
+	.header {}
+
+	.single-slide {
+		&__slide {}
+		&__slide-bg {}
+		&__wrapper {}
+		&__title {
+			span {
+				//line-height: 40px;
+				//text-align: center;
+			}
+		}
+	}
+
+
+
+	.main {
+		&__wrapper {
+			display: grid;
+			overflow: hidden;
+			grid-template-columns: 1fr;
+			grid-gap: 0px;
+			grid-template-areas: "products"
+										"sidebar ";
+		}
+	}
+
+
+	.footer {
+		&__copyright {
+			width: 100%;
+			text-align: center;
+		}
+
+		&__menu {
+			width: 100%;
+			flex-direction: column;
+			align-items: center;
+		}
+		&__menu-item {
+			border: none;
+			margin-bottom: 10px;
+			a {
+				display: block;
+				padding: 0;	
+				margin: 0;
+				&:first-child {
+					padding: 0;	
+					margin: 0;
+				}
+				&:last-child {
+					padding: 0;	
+					margin: 0;
+				}
+			}
+		}
+	}
+}

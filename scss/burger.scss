@@ -1,0 +1,57 @@
+//настройки бургера:
+	$burgerH: 30px;
+	$burgerW: 40px;
+	$lineH: 2px;
+	$lineCol: $bg1;
+	$burgerTrans: $mTrans;
+	$burgerTransDelay: 0.3s ease 0.3s;
+	//------------------
+// Бургер меню
+.burger { // оболочка бургера
+	display: none;
+	max-width: $burgerW;
+	min-width: $burgerW;
+	max-height: $burgerH;
+	min-height: $burgerH;
+	position: relative;
+	overflow: hidden;
+	span {// линнии в бургере (общие)
+		display: block;
+		height: $lineH;
+		width: 100%;
+		background: none;
+		backdrop-filter: invert(100%);
+		position: absolute;
+	}
+	span:nth-child(1) { // Первая линия
+		top: 0;
+		transition: top $burgerTransDelay, transform  $burgerTrans;
+	}
+	span:nth-child(2) { // Вторая линия
+		top: calc(50% - (#{$lineH}/2));
+		transition: transform $burgerTransDelay;
+	}
+	span:nth-child(3) { // Третья линия
+		top: calc(100% - #{$lineH});
+		transition: top $burgerTransDelay, transform  $burgerTrans;
+	}
+}
+.burger_active { // оболочка бургера
+	span {// линнии в бургере (общие)
+	}
+	span:nth-child(1) { // Первая линия
+		top: calc(50% - (#{$lineH}/2));
+		transform: rotate(45deg);
+		transition: top $burgerTrans, transform $burgerTransDelay;
+	}
+	span:nth-child(2) { // Вторая линия
+		top: calc(50% - (#{$lineH}/2));
+		transform: scale(0);
+		transition: transform $burgerTrans;
+	}
+	span:nth-child(3) { // Третья линия
+		top: calc(50% - (#{$lineH}/2));
+		transform: rotate(-45deg);
+		transition: top $burgerTrans, transform $burgerTransDelay;
+	}
+}

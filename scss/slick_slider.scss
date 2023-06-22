@@ -1,0 +1,335 @@
+// Slick slider
+// Переменные
+$sliderHeight: auto; // высота слайдера
+$btnSizeH: 67px; // Высота кнопки
+$btnSizeW: 67px;	// Ширина кнопки
+$btnBg: #ffffff; // цвет кнопки
+$btnBgHover: #ffffff; // Цвет кнопки при наведении
+$btnArrowColor: #cdcdcd;	// Цвет значка/текста на кнопке
+$btnArrowColorHover: #656565; // Цвет значка/текста на кнопке при наведении
+$dotCol: #ffffff;		// Цвет точки 		
+$dotColActive: $bg1; // Цвет точки активной
+
+
+@mixin adaptive-height-and-width($maxHeight, $minHeight, $maxWidth, $minWidth) {
+	$addHeight: $maxHeight - $minHeight;
+	height: calc(100vw / #{$maxWidth} * #{$addHeight} + #{$minHeight + px});
+	min-height: #{$minHeight + px};
+	max-height: #{$maxHeight + px};
+	width: calc( ( 100vw / #{$maxWidth} * #{$addHeight} + #{$minHeight + px}) / (#{$maxHeight} / 100) * (#{$maxWidth} / 100));
+	max-width: $maxWidth;
+	min-width: $minWidth;
+}
+
+// Настройки .single-slide
+.single-slide {
+	/* Слайдер */
+	.slick-slider{
+		max-height: $sliderHeight;
+		position: relative;
+	}
+	/* Слайдер запущен */
+	.slick-slider.slick-initialized{}
+	/* Слайдер с точками */
+	.slick-slider.slick-dotted{}
+	/* Ограничивающая оболочка */
+	.slick-list {
+		height: $sliderHeight;
+	}
+	/* Лента слайдов */
+	.slick-track{
+		height: $sliderHeight;
+	}
+	/* Слайд */
+	.slick-slide{
+		height: 100%;
+	}
+	/* Слайд активный (показывается) */
+	.slick-slide.slick-active{}
+	/* Слайд основной */
+	.slick-slide.slick-current{}
+	/* Слайд по центру */
+	.slick-slide.slick-center{}
+	/* Клонированный слайд */
+	.slick-slide.slick-cloned{}
+
+	/* Стрелка */
+	.slick-arrow{
+		height: 50px;
+		width: 50px;
+		border-radius: 50%;
+		background: $btnBg;
+		position: absolute;
+		transition: background $mTrans;
+		display: none;
+	}
+	.slick-arrow:hover {
+		background: $btnBgHover;
+		transition: background $mTrans;
+	}
+	button.slick-arrow{
+		font-size: 0;
+	}
+	
+	/* Стрелка влево */
+	.slick-arrow.slick-prev{
+		top: calc(50% - 33px);
+		left: 3%;
+		z-index: 10;
+	}
+
+	/* Стрелка вправо */
+	.slick-arrow.slick-next{}
+	button.slick-arrow.slick-next{
+		right: 3%;
+		top: calc(50% - 33px);
+		z-index: 10;
+	}
+	// донастроки
+	.slick-prev::before {
+		content: '\f053';
+	}
+	.slick-next::before {
+		content: '\f054';
+	}
+	.slick-next::before, 
+	.slick-prev::before {
+		font-size: 30px;
+		font-family: $FA;
+		color: $btnArrowColor;
+		transition: color $mTrans;
+	}
+	.slick-prev:hover::before,
+	.slick-next:hover::before {
+		transition: color $mTrans;
+		color: $btnArrowColorHover;
+	}
+	
+	/* Стрелка не активная */
+	.slick-arrow.slick-disabled{
+
+	}
+	
+
+	/* Точки (булиты) */
+	.slick-dots{	// оболочка блока с точками
+		display: flex;
+		justify-content: center;
+		//background: rgba(255, 0,0, 0.5);
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		padding: 15px 0;
+	}
+	.slick-dots li{
+		background: $dotCol;
+		height: 10px;
+		width: 10px;
+		border-radius: 50%;
+		margin: 0 10px;
+	}
+	/* Активная точка */
+	.slick-dots li.slick-active{
+		background: $dotColActive;
+	}
+	/* Элемент точки */
+	.slick-dots li button{
+		font-size: 0;
+	}
+	
+ }// Конец настройки слайдера .single-slide
+
+
+
+
+//======================================================
+//======================================================
+//======================================================
+//======================================================
+//======================================================
+//======================================================
+
+// ========= Настройки слайдера .fade ==================
+$fadeHeight: 320px; // высота слайдера
+
+
+// Внешний вид кнопок:
+$fadeArrowIcoBack: '\f053';  // Иконка кнопки назад/лево юникод
+$fadeArrowIcoNext: '\f054';  // Иконка кнопки вперед/право юникод
+$fadeArrowIcoCol: red; 	   // Цвет иконки кнопки
+$fadeArrowIcoColHover: blue; // Цвет иконки кнопки при наведении на кнопку
+$fadeArrowWidth: 11px;	      // Ширина кнопки
+$fadeArrowHeight: 11px;      // Высота кнопки
+
+// Другие стили обеих кнопок
+%fadeBtnStyle {			  
+	border-radius: 50%;
+}
+// Стили обеих кнопок при наведении
+%fadeBtnStyleHover {	
+	background: $btnBgHover;
+	transition: background $mTrans;
+}
+// Позиция левой кнопки:
+%fadeBtnLeftPosition {
+	top: calc(50% - 33px);
+	left: 8.5%;	
+}
+// Оболочка точек 13px;
+%wrapperDots {
+	padding: 13px 0;
+	box-shadow: 0 10px 4px -10px $fCol4 inset;
+}
+// Внешний вид точек
+$fadeDotColor: $bg3; // Цвет точки
+$fadeDotColorActive: $bg1; // Цвет активной точки
+$fadeDotColorHover: $bg4;
+$fadeDotHeight: 11px; // Высота точки
+$fadeDotWidth: 11px; // Ширина точки
+$fadeDotGap: 10px; // Отступ между точками
+
+// Другие стили точек
+%fadeDotsStyle {
+	min-height: $fadeDotHeight;
+	max-height: $fadeDotHeight;
+	min-width: $fadeDotWidth;
+	max-width: $fadeDotWidth;
+	margin: 0 $fadeDotGap;
+	border-radius: 50%;
+	background: $fadeDotColor;
+	&:hover {
+		background: $fadeDotColorHover;
+	}
+}
+
+
+.fade {
+	// Слайдер (не трогать)
+	.slick-slider{
+		position: relative;
+	}
+	// Слайдер запущен 
+	.slick-slider.slick-initialized{
+	}
+	// Слайдер с точками 
+	.slick-slider.slick-dotted{}
+
+
+
+	// Ограничивающая оболочка
+	.slick-list {
+		padding: 13px;
+	}
+	// Лента слайдов
+	.slick-track{
+		width: 100%;
+	}
+	// Слайд 
+	.slick-slide{
+		width: 100%;
+		img {
+			width: 100%;
+			object-fit: contain;
+		}
+	}
+	// Слайд активный (показывается)
+	.slick-slide.slick-active{
+
+	}
+	// Слайд основной
+	.slick-slide.slick-current{}
+	// Слайд по центру
+	.slick-slide.slick-center{}
+	// Клонированный слайд
+	.slick-slide.slick-cloned{}
+
+
+
+
+	// === Стрелки: ===
+	// тело кнопки
+	.slick-arrow{
+		position: absolute;
+		min-height:$fadeArrowHeight;
+		max-height: $fadeArrowHeight;
+		min-width: $fadeArrowWidth;
+		max-width: $fadeArrowWidth;
+		@extend %fadeBtnStyle;
+	}
+
+	// Тело кнопки при наведении
+	.slick-arrow:hover {
+		@extend %fadeBtnStyleHover;
+	}
+	button.slick-arrow{
+		font-size: 0;	// убираем надписи "предыдущий/следуюущий" слайд
+	}
+
+	// ==== Стрелка влево ====
+	.slick-arrow.slick-prev{
+		@extend %fadeBtnLeftPosition;
+		z-index: 10;
+	}
+	.slick-prev::before {
+		content: $fadeArrowIcoBack;
+	}
+
+	/* Стрелка вправо */
+	.slick-arrow.slick-next{}
+	button.slick-arrow.slick-next{
+		right: 8.5%;
+		top: calc(50% - 33px);
+		z-index: 10;
+	}
+
+
+
+	// Донастроки:
+
+	// Значек кнопки "вперед"
+	.slick-next::before {
+		content: $fadeArrowIcoNext;
+	}
+
+	.slick-next::before, 
+	.slick-prev::before {
+		font-size: 30px;
+		font-family: $FA;
+		color: $btnArrowColor;
+		transition: color $mTrans;
+	}
+	.slick-prev:hover::before,
+	.slick-next:hover::before {
+		transition: color $mTrans;
+		color: $btnArrowColorHover;
+	}
+
+	/* Стрелка не активная */
+	.slick-arrow.slick-disabled{
+
+	}
+
+	// Точки (булиты)
+	.slick-dots{	// оболочка блока с точками
+		display: flex;
+		justify-content: center;
+		@extend %wrapperDots;
+	}
+	// Точка. Можно задать размер, цвет и др парам
+	.slick-dots li{ 
+		@extend %fadeDotsStyle;
+		cursor: pointer;
+		overflow: hidden;
+	}
+
+	// Активная точка.
+	.slick-dots li.slick-active{ 
+		background: $fadeDotColorActive;
+	}
+
+	// Кнопка внутри точки
+	.slick-dots li button{
+		font-size: 0;
+	}
+
+}

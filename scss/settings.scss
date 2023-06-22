@@ -1,0 +1,110 @@
+// =============== Подключение Шрифты ============================================
+@font-face {
+	font-family: 'Font Awesome';
+	font-display: swap;
+	src: url("../font_awesome/fonts/fontawesome-webfont.eot");
+	src: local("O"), url("../font_awesome/fonts/fontawesome-webfont.woff") format("woff"), 
+			url("../font_awesome/fonts/fontawesome-webfont.ttf") format("truetype"), 
+			url("../font_awesome/fonts/fontawesome-webfont.svg") format("svg");
+}
+// font-family: 'Open Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+// =============== Переменные: =======================================
+
+// ============= Размеры блоков: ===============
+  $maxWidth: 1400; 	// Максимальная ширина документа
+$mwContainer: 1024px;	// Максимальная ширина контейнера
+ $pContainer:   20px;	// Внутренний правый и левый отступ контейнера
+
+$mwAside: 233px;
+
+// Основные цвета: 
+
+// Цвет шрифта
+$fCol1: #ffffff; // белый
+$fCol2: #bef2ff; // светло-голубой
+$fCol3: #656565; // темно серый
+$fCol4: #cdcdcd; // серый
+$fCol5: #635f57;	
+$fCol6: #464148; // Зачеркнутый текст
+$fCol7: #8adcf0; // Текст в нижнем подвале
+
+// Фоновые цвета
+$bg1: #4cb1ca; // Фоновый цвет 1 
+$bg1rgba: rgba(76, 177, 202, 0.8); 
+$bg1dark: #2d9fbb; // Фоновый цвет 1  темнее
+$bg2: #ffffff; // Фоновый цвет 2
+$bg3: #7db122; // Фоновый цвет 3
+$bg3dark: #67921a; // цвет 3 но теменее
+$bg4: #39a0b9; // Фоновый цвет 4
+$bg5: #0b4b5a; //
+$bg6: rgba(0, 0, 0, 0.4); // Фон заголовка в хедере
+$bgProduct: #eff1f0; // Фон изображений продукции
+
+// Тени
+$bs: 0 0 4px 0px $fCol4;
+
+// Другие цвета
+$searchBorder: #c6c6c6; // Рамка формы поиска
+
+// =========== Шрифт =================================
+$mff: 'Open Sans', sans-serif; // Главный шрифт 
+ $FA: 'Font Awesome'; 	// font-family Иконочный шрифт Font Awesome   
+$mfz: 16px;				  // Основной размер шрифта
+
+// Переходы: (пример: transform: color $trans1;)
+$transNavLink: 0.3s ease 0s; // Анимация смены параметров
+$mTrans: 0.3s ease 0s;
+
+
+
+// box-shadow
+//	   x   y   размытие толщина цвет
+$bs1: 0px 0px 10px 1px #ffffff;
+
+// Другие настроки
+
+
+// ======= шаблоны: ==================
+%center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+// =============== Миксины ============================
+// Пример вставки: @include adaptiv-font(40, 24);
+@mixin adaptive-font($pcSize, $mobSize) {
+	$addSize: $pcSize - $mobSize;
+	$addMobSize: $addSize + $addSize * 0.7;
+	// PC 
+	@media (min-width: 767px) {
+		font-size: calc(#{$mobSize + px} + #{$addSize} * ( 100vw / #{$maxWidth}));
+	}
+	// MOB
+	@media (max-width: 767px) {
+		font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth}));
+	}
+}
+
+// Адаптация картинки
+@mixin adaptive-img-height($maxHeight, $minHeight) {
+	$addHeight: $maxHeight - $minHeight;
+	$addMobHeight: $addHeight + $addHeight * 0.7;
+	height: calc(100vw / #{$maxWidth} * #{$addHeight} + #{$minHeight + px});
+	min-height: #{$minHeight + px};
+	max-height: #{$maxHeight + px};
+	@media (max-width: 767px) {
+		height: calc((100vw - 320px) / #{$maxWidth} * #{$addMobHeight} + #{$minHeight + px});
+	}
+}
+
+@mixin adaptive-height-and-width($maxHeight, $minHeight, $maxWidth, $minWidth) {
+	$addHeight: $maxHeight - $minHeight;
+	height: calc(100vw / #{$maxWidth} * #{$addHeight} + #{$minHeight + px});
+	min-height: #{$minHeight + px};
+	max-height: #{$maxHeight + px};
+	width: calc( ( 100vw / #{$maxWidth} * #{$addHeight} + #{$minHeight + px}) / (#{$maxHeight} / 100) * (#{$maxWidth} / 100));
+	max-width: $maxWidth;
+	min-width: $minWidth;
+}
